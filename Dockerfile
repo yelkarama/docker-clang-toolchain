@@ -1,4 +1,4 @@
-FROM alpine:3.13.5 AS builder_env
+FROM alpine:3.23.3 AS builder_env
 
 ARG REQUIRE="build-base wget cmake python3 ninja linux-headers"
 ARG LLVM_DOWNLOAD_URL="https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
@@ -173,7 +173,7 @@ RUN cd ${LLVM_SRC_DIR}/ \
     && cmake --build ./llvm-build-with-compiler-rt --target install \
     && rm -rf llvm-build-with-compiler-rt
 
-FROM alpine:3.13.5 AS clang-toolchain
+FROM alpine:3.23.3 AS clang-toolchain
 
 LABEL maintainer="genshen genshenchu@gmail.com" \
     description="clang/clang++ toolchain without gnu."
